@@ -3,7 +3,7 @@ import {Card, CardActions, CardContent, Button, Typography} from '@material-ui/c
 import {Box} from '@mui/material';
 import './DeletarTema.css';
 import { useNavigate, useParams } from 'react-router-dom';
-
+import { toast } from "react-toastify";
 
 import Tema from '../../../models/Tema';
 import { buscaId, deleteId } from '../../../services/Services';
@@ -23,7 +23,17 @@ function DeletarTema() {
 
   useEffect(() => {
     if (token == "") {
-      alert("Voce precisa estar logado")
+     
+      toast.error('Voce precisa estar logado', {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
       navigate("/login")
     }
   }, [token])
@@ -50,7 +60,17 @@ function DeletarTema() {
         "Authorization": token
       }
     });
-    alert("Tema deletado com sucesso");
+    
+    toast.success("Tema deletado com sucesso", {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   }
 
   function nao()  {
